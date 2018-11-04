@@ -1,2 +1,6 @@
 # RDE
-The official Ross Desktop Environment
+
+The official Ross Desktop Environment.
+
+# Install
+

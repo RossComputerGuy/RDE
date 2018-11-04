@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ ! -d ~/.config/rde/ ]; then
+	mkdir -p ~/.config/rde/
+	cp /etc/rde/wallpaper.jpg  ~/.config/rde/wallpaper.jpg
+fi
+
+cp /etc/rde/configs/fbpanel.conf ~/.config/fbpanel/rde
+
+compton --dbus --backend glx &
+
+# Notifications
+twmnd &
+
+# Extras
+GTK_THEME=Nordic guake &
+conky --config /etc/rde/configs/conky.conf &
+hsetroot -fill ~/.config/rde/wallpaper.jpg
+gdesklets
+paramano &
+nm-applet &
+fbpanel --profile rde &
+Shinjiru &
+discord &
+
+# Tray Icons
+pnmixer &
+
+# WM
+openbox --config-file /etc/rde/configs/openbox/rc.xml
