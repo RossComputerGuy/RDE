@@ -1,0 +1,3 @@
+[submodule "apps/settings"]
+	path = apps/settings
+	url = https://github.com/Ross-Technologies/RDE-Settings

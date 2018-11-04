@@ -2,19 +2,6 @@
 
 The official Ross Desktop Environment.
 
-# Install
+# Installing
 
-Required Packages:
-* compton
-* twmnd
-* guake
-* conky
-* hsetroot
-* gdesklets
-* paramano
-* nm-applet
-* fbpanel
-* pnmixer
-* openbox
-
-After installing the required packages, run `install.sh` as root. To start RDE run, `start-rde` in your xinit script.
+[See the wiki install page](https://github.com/Ross-Technologies/RDE/wiki/Installing);
