@@ -20,8 +20,6 @@ gdesklets
 paramano &
 nm-applet &
 fbpanel --profile rde &
-Shinjiru &
-discord &
 
 # Tray Icons
 pnmixer &
