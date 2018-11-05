@@ -5,7 +5,9 @@ if [ ! -d ~/.config/rde/ ]; then
 	cp /etc/rde/wallpaper.jpg  ~/.config/rde/wallpaper.jpg
 fi
 
+mkdir -p ~/.config/twmn/
 cp /etc/rde/configs/fbpanel.conf ~/.config/fbpanel/rde
+cp /etc/twmn.conf ~/.config/twmn/twmn.conf
 
 export GTK_THEME=Nordic
 

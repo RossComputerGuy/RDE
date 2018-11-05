@@ -17,5 +17,6 @@ install:
 	@cp $(IMAGES_SRC)/wallpaper.jpg /etc/rde/wallpaper.jpg
 	@echo "Installing configs"
 	@cp -r $(CONFIGS_SRC)/* /etc/rde/configs/
+	@cp -r $(CONFIGS_SRC)/twmn.conf /etc/twmn.conf
 	@echo "Installing sounds"
 	@cp -r $(SOUNDS_SRC)/* /etc/rde/sounds/
