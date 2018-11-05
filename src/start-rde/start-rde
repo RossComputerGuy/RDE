@@ -7,19 +7,25 @@ fi
 
 cp /etc/rde/configs/fbpanel.conf ~/.config/fbpanel/rde
 
+export GTK_THEME=Nordic
+
 compton --dbus --backend glx &
 
 # Notifications
 twmnd &
 
 # Extras
-GTK_THEME=Nordic guake &
+guake &
 conky --config /etc/rde/configs/conky.conf &
 hsetroot -fill ~/.config/rde/wallpaper.jpg
 gdesklets
 paramano &
 nm-applet &
 fbpanel --profile rde &
+
+# Custom pulseaudio stuff
+pulseaudio -k
+pulseaudio --start -nC -F /etc/rde/configs/pulseaudio.conf
 
 # Tray Icons
 pnmixer &

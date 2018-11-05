@@ -5,6 +5,7 @@ BUILD_SRC=$(SRC)/build
 CONFIGS_SRC=$(SRC)/configs
 IMAGES_SRC=$(SRC)/images
 NORDIC_SRC=$(SRC)/nordic
+SOUNDS_SRC=$(SRC)/sounds
 START_RDE_SRC=$(SRC)/start-rde
 
 all:
