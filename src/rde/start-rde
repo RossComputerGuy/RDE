@@ -2,6 +2,8 @@
 
 if [ ! -d ~/.config/rde/ ]; then
 	mkdir -p ~/.config/rde/
+	mkdir -p ~/.config/rde/openbox
+	cp -r /etc/rde/configs/openbox/*  ~/.config/rde/openbox
 	cp /etc/rde/wallpaper.jpg  ~/.config/rde/wallpaper.jpg
 fi
 
@@ -33,4 +35,4 @@ pulseaudio --start -nC -F /etc/rde/configs/pulseaudio.conf
 pnmixer &
 
 # WM
-openbox --config-file /etc/rde/configs/openbox/rc.xml
+openbox --config-file ~/.config/rde/openbox/rc.xml
