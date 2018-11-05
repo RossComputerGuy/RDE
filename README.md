@@ -1,6 +1,6 @@
 # RDE
 
-The official Ross Desktop Environment.
+The official Ross Desktop Environment. A lightweight desktop environment for Linux.
 
 # Installing
 
