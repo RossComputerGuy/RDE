@@ -4,3 +4,6 @@
 [submodule "src/panel"]
 	path = src/panel
 	url = https://github.com/Ross-Technologies/RDE-Panel
+[submodule "src/toolkit"]
+	path = src/toolkit
+	url = https://github.com/Ross-Technologies/RDE-Toolkit
