@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/Ross-Technologies/RDE#readme",
   "bin": {
+    "rdectl": "bin/rdectl.js",
     "startrde": "bin/startrde.js"
   },
   "dependencies": {
     "acpiclient": "0.0.1",
     "commander": "^2.19.0",
+    "dbus": "^1.0.3",
     "fs-extra": "^7.0.0",
     "node-notifier": "^5.3.0",
     "xml-js": "^1.6.8"

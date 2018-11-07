@@ -4,6 +4,7 @@ const program = require("commander")
 	.version("1.0.0")
 	.parse(process.argv);
 
+const DBus = require("dbus");
 const fs = require("fs-extra");
 const os = require("os");
 const path = require("path");
@@ -35,6 +36,22 @@ process.env["GTK_THEME"] = "Nordic";
 /* Load settings */
 var cfg = JSON.parse(fs.readFileSync(path.join(paths["SETTINGS"],"rde.json")).toString());
 
+/* Start the DBus session. */
+var service = DBus.registerService("session","com.rosstechnologies.RDE");
+var serviceObj = service.createObject("/com/rosstechnologies/RDE");
+var serviceIface = serviceObj.createInterface("com.rosstechnologies.RDE");
+serviceIface.addMethod("Kill",{},callback => {
+	callback();
+	process.exit();
+});
+serviceIface.addMethod("SetWallpaper",{ in: DBus.Define(String) },(obj,callback) => {
+	cfg["wallpaper"] = obj;
+	fs.writeFileSync(path.join(paths["SETTINGS"],"rde.json"),JSON.stringify(cfg));
+	spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
+	callback(null);
+});
+serviceIface.update();
+
 /* Start internal services */
 require("../services/battery.js");
 
@@ -48,7 +65,9 @@ spawnWrapper(exec("paramano"));
 spawnWrapper(exec("nm-applet"));
 spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
 spawnWrapper(exec("fbpanel --profile rde"));
-spawnWrapper(exec(cfg["wm"])).on("exit",() => process.exit());
+spawnWrapper(exec(cfg["wm"])).on("exit",() => {
+	process.exit();
+});
 spawnWrapper(exec("pnmixer"));
 spawnWrapper(exec("pulseaudio -k"));
 spawnWrapper(exec("pulseaudio --start -nC -F ~/.config/rde/pulseaudio.conf"));
