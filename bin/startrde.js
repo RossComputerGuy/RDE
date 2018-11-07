@@ -2,6 +2,7 @@
 
 const program = require("commander")
 	.version("1.0.0")
+	.option("-d, --dbus","Disables the DBus service")
 	.parse(process.argv);
 
 const DBus = require("dbus");
@@ -37,20 +38,22 @@ process.env["GTK_THEME"] = "Nordic";
 var cfg = JSON.parse(fs.readFileSync(path.join(paths["SETTINGS"],"rde.json")).toString());
 
 /* Start the DBus session. */
-var service = DBus.registerService("session","com.rosstechnologies.RDE");
-var serviceObj = service.createObject("/com/rosstechnologies/RDE");
-var serviceIface = serviceObj.createInterface("com.rosstechnologies.RDE");
-serviceIface.addMethod("Kill",{},callback => {
-	callback();
-	process.exit();
-});
-serviceIface.addMethod("SetWallpaper",{ in: DBus.Define(String) },(obj,callback) => {
-	cfg["wallpaper"] = obj;
-	fs.writeFileSync(path.join(paths["SETTINGS"],"rde.json"),JSON.stringify(cfg));
-	spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
-	callback(null);
-});
-serviceIface.update();
+if(!program.dbus) {
+	var service = DBus.registerService("session","com.rosstechnologies.RDE");
+	var serviceObj = service.createObject("/com/rosstechnologies/RDE");
+	var serviceIface = serviceObj.createInterface("com.rosstechnologies.RDE");
+	serviceIface.addMethod("Kill",{},callback => {
+		callback();
+		process.exit();
+	});
+	serviceIface.addMethod("SetWallpaper",{ in: DBus.Define(String) },(obj,callback) => {
+		cfg["wallpaper"] = obj;
+		fs.writeFileSync(path.join(paths["SETTINGS"],"rde.json"),JSON.stringify(cfg));
+		spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
+		callback(null);
+	});
+	serviceIface.update();
+}
 
 /* Start internal services */
 require("../services/battery.js");
