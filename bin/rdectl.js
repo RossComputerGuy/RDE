@@ -3,7 +3,7 @@
 const program = require("commander")
 	.version("1.0.0")
 	.option("-k, --kill","Stops RDE")
-	.option("-w, --wallpaper [path]","Sets the wallpaper")
+	.option("-r, --reconfigure","Reloads the settings")
 	.parse(process.argv);
 
 const DBus = require("dbus");
@@ -17,8 +17,8 @@ bus.getInterface("com.rosstechnologies.RDE","/com/rosstechnologies/RDE","com.ros
 			if(err) throw err;
 			bus.disconnect();
 		});
-	} else if(program["wallpaper"]) {
-		iface.SetWallpaper(program["wallpaper"],err => {
+	} else if(program["reconfigure"]) {
+		iface.Reconfigure(,err => {
 			if(err) throw err;
 			bus.disconnect();
 		});

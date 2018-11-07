@@ -46,11 +46,10 @@ if(!program.dbus) {
 		callback();
 		process.exit();
 	});
-	serviceIface.addMethod("SetWallpaper",{ in: DBus.Define(String) },(obj,callback) => {
-		cfg["wallpaper"] = obj;
-		fs.writeFileSync(path.join(paths["SETTINGS"],"rde.json"),JSON.stringify(cfg));
+	serviceIface.addMethod("Reconfigure",{},(obj,callback) => {
+		cfg = JSON.parse(fs.readFileSync(path.join(paths["SETTINGS"],"rde.json")).toString());
 		spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
-		callback(null);
+		callback();
 	});
 	serviceIface.update();
 }
