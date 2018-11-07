@@ -49,5 +49,5 @@ spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
 spawnWrapper(exec("fbpanel --profile rde"));
 spawnWrapper(exec("pulseaudio -k"));
 spawnWrapper(exec("pulseaudio --start -nC -F ~/.config/rde/pulseaudio.conf"));
-spawnWrapper(exec("pnmixer"));
 spawnWrapper(exec(cfg["wm"]));
+spawnWrapper(exec("pnmixer"));
