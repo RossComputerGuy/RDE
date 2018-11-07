@@ -1,0 +1,6 @@
+{
+	"conky": true,
+	"guake": true,
+	"wallpaper": "~/.local/share/rde/images/wallpaper.jpg",
+	"wm": "openbox"
+}
