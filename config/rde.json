@@ -2,5 +2,5 @@
 	"conky": true,
 	"guake": true,
 	"wallpaper": "~/.local/share/rde/images/wallpaper.jpg",
-	"wm": "openbox"
+	"wm": "openbox --config ~/.config/rde/openbox/rc.xml"
 }

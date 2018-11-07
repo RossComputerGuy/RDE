@@ -45,7 +45,7 @@ if(cfg["guake"]) spawnWrapper(exec("guake"));
 spawnWrapper(exec("gdesklets"));
 spawnWrapper(exec("paramano"));
 spawnWrapper(exec("nm-applet"));
-spawnWrapper(exec("hsetroot --fill "+cfg["wallpaper"]));
+spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
 spawnWrapper(exec("fbpanel --profile rde"));
 spawnWrapper(exec("pulseaudio -k"));
 spawnWrapper(exec("pulseaudio --start -nC -F ~/.config/rde/pulseaudio.conf"));
