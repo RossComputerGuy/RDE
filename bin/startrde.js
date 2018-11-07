@@ -13,6 +13,7 @@ const { exec } = require("child_process");
 function spawnWrapper(p) {
 	p.stdout.on("data",data => console.log(data.toString()));
 	p.stderr.on("data",data => console.error(data.toString()));
+	return p;
 }
 
 /* Check if the Nordic theme is installed */
@@ -47,7 +48,7 @@ spawnWrapper(exec("paramano"));
 spawnWrapper(exec("nm-applet"));
 spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
 spawnWrapper(exec("fbpanel --profile rde"));
-spawnWrapper(exec(cfg["wm"]));
+spawnWrapper(exec(cfg["wm"])).on("exit",() => process.exit());
 spawnWrapper(exec("pnmixer"));
 spawnWrapper(exec("pulseaudio -k"));
 spawnWrapper(exec("pulseaudio --start -nC -F ~/.config/rde/pulseaudio.conf"));
