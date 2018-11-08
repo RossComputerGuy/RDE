@@ -30,7 +30,7 @@ if(!fs.existsSync(path.join(os.homedir(),".config","fbpanel","rde"))) fs.copySyn
 if(!fs.existsSync(paths["SETTINGS"])) fs.copySync(path.join(__dirname,"..","config"),paths["SETTINGS"]);
 
 /* Check if the share is installed */
-if(!fs.existsSync(paths["SHARE"])) fs.copySync(path.join(__dirname,"..","share"),paths["SHARE"]);
+fs.copySync(path.join(__dirname,"..","share"),paths["SHARE"]);
 
 process.env["GTK_THEME"] = "Nordic";
 
@@ -74,3 +74,4 @@ spawnWrapper(exec(cfg["wm"])).on("exit",() => {
 spawnWrapper(exec("pnmixer"));
 spawnWrapper(exec("pulseaudio -k"));
 spawnWrapper(exec("pulseaudio --start -nC -F ~/.config/rde/pulseaudio.conf"));
+spawnWrapper(exec("play ~/.local/share/rde/sounds/startup.wav"));
