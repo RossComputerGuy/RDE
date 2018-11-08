@@ -21,6 +21,7 @@
     "startrde": "bin/startrde.js"
   },
   "dependencies": {
+    "@ross-technologies/rde-panel": "git+https://github.com/Ross-Technologies/RDE-Panel.git",
     "acpiclient": "0.0.1",
     "commander": "^2.19.0",
     "dbus": "^1.0.3",

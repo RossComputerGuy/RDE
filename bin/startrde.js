@@ -24,8 +24,6 @@ if(!fs.existsSync("/usr/share/themes/Nordic") && !fs.existsSync(path.join(paths[
 	fs.copySync(path.join(__dirname,"..","Nordic"),path.join(paths["THEMES"],"Nordic"));
 }
 
-if(!fs.existsSync(path.join(os.homedir(),".config","fbpanel","rde"))) fs.copySync(path.join(__dirname,"..","config","fbpanel.conf"),path.join(os.homedir(),".config","fbpanel","rde"));
-
 /* Check if the settings are available */
 if(!fs.existsSync(paths["SETTINGS"])) fs.copySync(path.join(__dirname,"..","config"),paths["SETTINGS"]);
 
@@ -66,7 +64,7 @@ spawnWrapper(exec("gdesklets"));
 spawnWrapper(exec("paramano"));
 spawnWrapper(exec("nm-applet"));
 spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
-spawnWrapper(exec("fbpanel --profile rde"));
+spawnWrapper(exec("rde-panel"));
 spawnWrapper(exec(cfg["wm"])).on("exit",() => {
 	process.exit();
 });
