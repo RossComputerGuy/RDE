@@ -1,6 +1,31 @@
 {
 	"x": 0,
-	"y": 0,
+	"y": "97%",
 	"width": "100%",
-	"height": "1%"
+	"height": "3%",
+	"opacity": 0.8,
+	"color": "white",
+	"font": "15px DejaVu Sans",
+	"items": [
+		{
+			"type": "clock",
+			"font": "15px DejaVu Sans",
+			"format": "%D %l:%M:%S %p",
+			"actions": {
+				"leftClick": [{
+					"type": "command",
+					"action": "xmessage \"No action was set\""
+				}]
+			}
+		},
+		{
+			"type": "spacer",
+			"size": "10%"
+		},
+		{
+			"type": "windows",
+			"maxLength": 10,
+			"spacing": "5%"
+		}
+	]
 }
