@@ -19,7 +19,7 @@
 		<primaryMonitor>1</primaryMonitor>
 	</placement>
 	<theme>
-		<name>win9x</name>
+		<name>win3.1</name>
 		<titleLayout>NLIMDC</titleLayout>
 		<keepBorder>yes</keepBorder>
 		<animateIconify>yes</animateIconify>
@@ -571,7 +571,7 @@
 		</context>
 	</mouse>
 	<menu>
-		<file>~/.config/rde/openbox/menu.xml</file>
+		<file>~/.config/openbox/menu.xml</file>
 		<hideDelay>200</hideDelay>
 		<middle>no</middle>
 		<submenuShowDelay>100</submenuShowDelay>

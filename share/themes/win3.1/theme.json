@@ -1,0 +1,15 @@
+{
+	"name": "Windows 3.1",
+	"description": "A Windows 3.1 theme.",
+	"overrides": ["wallpaper","sounds","wm","startup","gtk"],
+	"images": {
+		"wallpaper": "wallpaper.png"
+	},
+	"sounds": {
+		"startup": "startup.mp3"
+	},
+	"startup": [
+	],
+	"gtkTheme": "win3.1",
+	"wm": "openbox --config-file ~/.local/share/rde/themes/win9x/config/openbox/rc.xml"
+}
