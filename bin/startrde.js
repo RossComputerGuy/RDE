@@ -85,6 +85,9 @@ var startupPrograms = [
 ];
 if(theme.info.overrides.indexOf("startup") > -1 && theme.info.startup != null) startupPrograms = theme.info.startup;
 
+var wm = cfg["wm"];
+if(theme.info.overrides.indexOf("wm") > -1 && theme.info.wm != null) wm = theme.info.wm;
+
 /* Start internal services */
 require("../services/battery.js");
 
@@ -98,7 +101,7 @@ for(var startupProg of startupPrograms) {
 }
 spawnWrapper(exec("nm-applet"));
 spawnWrapper(exec("hsetroot -fill "+wallpaper));
-spawnWrapper(exec(cfg["wm"])).on("exit",() => {
+spawnWrapper(exec(wm)).on("exit",() => {
 	process.exit();
 });
 spawnWrapper(exec("pnmixer"));
