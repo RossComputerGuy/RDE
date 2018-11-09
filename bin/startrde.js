@@ -10,6 +10,7 @@ const fs = require("fs-extra");
 const os = require("os");
 const path = require("path");
 const paths = require("../paths.js");
+const Theme = require("../theme.js");
 const { exec } = require("child_process");
 
 function spawnWrapper(p) {
@@ -32,10 +33,14 @@ if(!fs.existsSync(paths["SETTINGS"])) fs.copySync(path.join(__dirname,"..","conf
 /* Check if the share is installed */
 fs.copySync(path.join(__dirname,"..","share"),paths["SHARE"]);
 
-process.env["GTK_THEME"] = "Nordic";
-
 /* Load settings */
 var cfg = JSON.parse(fs.readFileSync(path.join(paths["SETTINGS"],"rde.json")).toString());
+var theme = new Theme(cfg["theme"]);
+
+process.env["GTK_THEME"] = "Nordic";
+if(theme.info.overrides.indexOf("gtk") > -1) process.env["GTK_THEME"] = theme.info.gtkTheme;
+
+theme.init();
 
 /* Start the DBus session. */
 if(!program.dbus) {
@@ -48,11 +53,37 @@ if(!program.dbus) {
 	});
 	serviceIface.addMethod("Reconfigure",{},(obj,callback) => {
 		cfg = JSON.parse(fs.readFileSync(path.join(paths["SETTINGS"],"rde.json")).toString());
-		spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
+		var wallpaper = cfg["wallpaper"];
+		theme = new Theme(cfg["theme"]);
+		if(theme.info.overrides.indexOf("wallpaper") > -1) wallpaper = path.join(theme.path,"images",theme.info.images["wallpaper"]);
+		spawnWrapper(exec("hsetroot -fill "+wallpaper));
 		callback();
 	});
 	serviceIface.update();
 }
+
+var wallpaper = cfg["wallpaper"];
+if(theme.info.overrides.indexOf("wallpaper") > -1) wallpaper = path.join(theme.path,"images",theme.info.images["wallpaper"]);
+
+var startupPath = "~/.local/share/rde/sounds/startup.wav";
+if(theme.info.overrides.indexOf("sounds") > -1 && theme.info.sounds["startup"] != null) startupPath = theme.info.sounds["startup"];
+
+var paconfigPath = "~/.config/rde/pulseaudio.conf";
+if(theme.info.overrides.indexOf("pulseaudio") > -1 && theme.info.configs["pulseaudio"] != null) paconfigPath = theme.info.configs["pulseaudio"];
+
+var conkyPath = "~/.config/rde/conky.conf";
+if(theme.info.overrides.indexOf("conky") > -1 && theme.info.configs["conky"] != null) conkyPath = theme.info.configs["conky"];
+
+var fbpanelProfile = "rde";
+if(theme.info.overrides.indexOf("fbpanel") > -1 && theme.info.configs["fbpanel"] != null) fbpanelProfile = theme.info.configs["fbpanel"];
+
+var rdePanelConfig = "/home/spaceboyross/.config/rde/panel.json";
+if(theme.info.overrides.indexOf("rde-panel") > -1 && theme.info.configs["rde-panel"] != null) rdePanelConfig = theme.info.configs["rde-panel"];
+
+var startupPrograms = [
+	"gdesklets","paramano","fbpanel --profile rde","rde-panel -c "+rdePanelConfig
+];
+if(theme.info.overrides.indexOf("startup") > -1 && theme.info.startup != null) startupPrograms = theme.info.startup;
 
 /* Start internal services */
 require("../services/battery.js");
@@ -60,18 +91,17 @@ require("../services/battery.js");
 /* Start the desktop environment */
 spawnWrapper(exec("compton --dbus --backend glx"));
 spawnWrapper(exec("twmnd"));
-if(cfg["conky"]) spawnWrapper(exec("conky --config ~/.config/rde/conky.conf"));
+if(cfg["conky"]) spawnWrapper(exec("conky --config "+conkyPath));
 if(cfg["guake"]) spawnWrapper(exec("guake"));
-spawnWrapper(exec("gdesklets"));
-spawnWrapper(exec("paramano"));
+for(var startupProg of startupPrograms) {
+	spawnWrapper(exec(startupProg));
+}
 spawnWrapper(exec("nm-applet"));
-spawnWrapper(exec("hsetroot -fill "+cfg["wallpaper"]));
-spawnWrapper(exec("rde-panel"));
-spawnWrapper(exec("fbpanel --profile rde"));
+spawnWrapper(exec("hsetroot -fill "+wallpaper));
 spawnWrapper(exec(cfg["wm"])).on("exit",() => {
 	process.exit();
 });
 spawnWrapper(exec("pnmixer"));
 spawnWrapper(exec("pulseaudio -k"));
-spawnWrapper(exec("pulseaudio --start -nC -F ~/.config/rde/pulseaudio.conf"));
-spawnWrapper(exec("play ~/.local/share/rde/sounds/startup.wav"));
+spawnWrapper(exec("pulseaudio --start -nC -F "+paconfigPath));
+spawnWrapper(exec("play "+startupPath));
