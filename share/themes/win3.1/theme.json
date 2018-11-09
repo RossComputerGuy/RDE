@@ -11,5 +11,5 @@
 	"startup": [
 	],
 	"gtkTheme": "win3.1",
-	"wm": "openbox --config-file ~/.local/share/rde/themes/win9x/config/openbox/rc.xml"
+	"wm": "openbox --config-file ~/.local/share/rde/themes/win3.1/config/openbox/rc.xml"
 }
