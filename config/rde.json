@@ -1,7 +1,7 @@
 {
 	"conky": true,
 	"guake": true,
-	"wallpaper": "~/.local/share/rde/images/wallpaper.jpg",
+	"wallpaper": "~/.local/share/rde/images/wallpaper.png",
 	"theme": "default",
 	"wm": "openbox --config-file ~/.config/rde/openbox/rc.xml"
 }

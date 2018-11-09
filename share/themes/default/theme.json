@@ -1,8 +1,5 @@
 {
 	"name": "Default",
 	"description": "The default theme for RDE",
-	"overrides": ["wallpaper"],
-	"images": {
-		"wallpaper": "wallpaper.jpg"
-	}
+	"overrides": []
 }
