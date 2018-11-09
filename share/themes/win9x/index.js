@@ -27,5 +27,5 @@ function copyDir(target,source) {
 module.exports.init = () => {
 	copyFile(path.join(os.homedir(),".local","share","icons","win98start.png"),path.join(__dirname,"images","startbutton.png"));
 	copyFile(path.join(os.homedir(),".config","fbpanel","win9x"),path.join(__dirname,"config","fbpanel.conf"));
-	copyDir(path.join(os.homedir(),".themes","Chicago95"),path.join(__dirname,"Chicago95"));
+	copyDir(path.join(os.homedir(),".themes"),path.join(__dirname,"Chicago95"));
 };
