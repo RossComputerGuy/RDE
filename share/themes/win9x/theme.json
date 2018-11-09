@@ -11,6 +11,6 @@
 	"startup": [
 		"fbpanel --profile win9x"
 	],
-	"gtkTheme": "Chicago95",
+	"gtkTheme": "win9x",
 	"wm": "openbox --config-file ~/.local/share/rde/themes/win9x/config/openbox/rc.xml"
 }
