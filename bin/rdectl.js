@@ -18,7 +18,7 @@ bus.getInterface("com.rosstechnologies.RDE","/com/rosstechnologies/RDE","com.ros
 			bus.disconnect();
 		});
 	} else if(program["reconfigure"]) {
-		iface.Reconfigure(,err => {
+		iface.Reconfigure(err => {
 			if(err) throw err;
 			bus.disconnect();
 		});
