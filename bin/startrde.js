@@ -83,6 +83,8 @@ if(theme.info.overrides.indexOf("rde-panel") > -1 && theme.info.configs["rde-pan
 var startupPrograms = [
 	"gdesklets","paramano","fbpanel --profile "+fbpanelProfile,"rde-panel -c "+rdePanelConfig
 ];
+if(cfg["conky"]) startupPrograms.push("conky --config "+conkyPath);
+if(cfg["guake"]) startupPrograms.push("guake");
 if(theme.info.overrides.indexOf("startup") > -1 && theme.info.startup != null) startupPrograms = theme.info.startup;
 
 var wm = cfg["wm"];
@@ -94,7 +96,6 @@ require("../services/battery.js");
 /* Start the desktop environment */
 spawnWrapper(exec("compton --dbus --backend glx"));
 spawnWrapper(exec("twmnd"));
-if(cfg["conky"]) spawnWrapper(exec("conky --config "+conkyPath));
 if(cfg["guake"]) spawnWrapper(exec("guake"));
 for(var startupProg of startupPrograms) {
 	spawnWrapper(exec(startupProg));

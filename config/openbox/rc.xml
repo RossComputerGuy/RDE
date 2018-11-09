@@ -571,7 +571,7 @@
 		</context>
 	</mouse>
 	<menu>
-		<file>/etc/rde/configs/openbox/menu.xml</file>
+		<file>~/.config/rde/openbox/menu.xml</file>
 		<hideDelay>200</hideDelay>
 		<middle>no</middle>
 		<submenuShowDelay>100</submenuShowDelay>

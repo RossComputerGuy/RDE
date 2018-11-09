@@ -1,12 +1,15 @@
 {
 	"name": "Windows 9x",
 	"description": "A Windows 9x theme.",
-	"overrides": ["wallpaper","sounds","wm"],
+	"overrides": ["wallpaper","sounds","wm","startup"],
 	"images": {
 		"wallpaper": "wallpaper.jpg"
 	},
 	"sounds": {
 		"startup": "startup.mp3"
 	},
+	"startup": [
+		"fbpanel --profile win9x"
+	],
 	"wm": "openbox --config-file ~/.local/share/rde/themes/win9x/config/openbox/rc.xml"
 }
