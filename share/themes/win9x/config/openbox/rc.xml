@@ -19,7 +19,7 @@
 		<primaryMonitor>1</primaryMonitor>
 	</placement>
 	<theme>
-		<name>Clearlooks</name>
+		<name>win9x</name>
 		<titleLayout>NLISMDC</titleLayout>
 		<keepBorder>yes</keepBorder>
 		<animateIconify>yes</animateIconify>

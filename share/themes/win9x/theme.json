@@ -3,7 +3,7 @@
 	"description": "A Windows 9x theme.",
 	"overrides": ["wallpaper","sounds","wm","startup","gtk"],
 	"images": {
-		"wallpaper": "wallpaper.jpg"
+		"wallpaper": "wallpaper.png"
 	},
 	"sounds": {
 		"startup": "startup.mp3"
