@@ -25,6 +25,8 @@ if(!fs.existsSync("/usr/share/themes/Nordic") && !fs.existsSync(path.join(paths[
 	fs.copySync(path.join(__dirname,"..","Nordic"),path.join(paths["THEMES"],"Nordic"));
 }
 
+fs.copySync(path.join(__dirname,"..","share","images","logo.png"),path.join(os.homedir(),".local","share","icons","rde-logo.png"));
+
 if(!fs.existsSync(path.join(os.homedir(),".config","fbpanel","rde"))) fs.copySync(path.join(__dirname,"..","config","fbpanel.conf"),path.join(os.homedir(),".config","fbpanel","rde"));
 
 /* Check if the settings are available */
@@ -96,7 +98,6 @@ require("../services/battery.js");
 /* Start the desktop environment */
 spawnWrapper(exec("compton --dbus --backend glx"));
 spawnWrapper(exec("twmnd"));
-if(cfg["guake"]) spawnWrapper(exec("guake"));
 for(var startupProg of startupPrograms) {
 	spawnWrapper(exec(startupProg));
 }
