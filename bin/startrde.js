@@ -66,22 +66,22 @@ var wallpaper = cfg["wallpaper"];
 if(theme.info.overrides.indexOf("wallpaper") > -1) wallpaper = path.join(theme.path,"images",theme.info.images["wallpaper"]);
 
 var startupPath = "~/.local/share/rde/sounds/startup.wav";
-if(theme.info.overrides.indexOf("sounds") > -1 && theme.info.sounds["startup"] != null) startupPath = theme.info.sounds["startup"];
+if(theme.info.overrides.indexOf("sounds") > -1 && theme.info.sounds["startup"] != null) startupPath = path.join(theme.path,"sounds",theme.info.sounds["startup"]);
 
 var paconfigPath = "~/.config/rde/pulseaudio.conf";
-if(theme.info.overrides.indexOf("pulseaudio") > -1 && theme.info.configs["pulseaudio"] != null) paconfigPath = theme.info.configs["pulseaudio"];
+if(theme.info.overrides.indexOf("pulseaudio") > -1 && theme.info.configs["pulseaudio"] != null) paconfigPath = path.join(theme.path,"config",theme.info.configs["pulseaudio"]);
 
 var conkyPath = "~/.config/rde/conky.conf";
-if(theme.info.overrides.indexOf("conky") > -1 && theme.info.configs["conky"] != null) conkyPath = theme.info.configs["conky"];
+if(theme.info.overrides.indexOf("conky") > -1 && theme.info.configs["conky"] != null) conkyPath = path.join(theme.path,"config",theme.info.configs["conky"]);
 
 var fbpanelProfile = "rde";
 if(theme.info.overrides.indexOf("fbpanel") > -1 && theme.info.configs["fbpanel"] != null) fbpanelProfile = theme.info.configs["fbpanel"];
 
 var rdePanelConfig = "/home/spaceboyross/.config/rde/panel.json";
-if(theme.info.overrides.indexOf("rde-panel") > -1 && theme.info.configs["rde-panel"] != null) rdePanelConfig = theme.info.configs["rde-panel"];
+if(theme.info.overrides.indexOf("rde-panel") > -1 && theme.info.configs["rde-panel"] != null) rdePanelConfig = path.join(theme.path,"config",theme.info.configs["rde-panel"]);
 
 var startupPrograms = [
-	"gdesklets","paramano","fbpanel --profile rde","rde-panel -c "+rdePanelConfig
+	"gdesklets","paramano","fbpanel --profile "+fbpanelProfile,"rde-panel -c "+rdePanelConfig
 ];
 if(theme.info.overrides.indexOf("startup") > -1 && theme.info.startup != null) startupPrograms = theme.info.startup;
 
